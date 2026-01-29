@@ -142,6 +142,7 @@
     <ClInclude Include="src\cubemap\Cubemap.hpp" />
     <ClInclude Include="src\image\Image.hpp" />
     <ClInclude Include="src\layout\DiceLayout.hpp" />
+    <ClInclude Include="src\Logger\Logger.hpp" />
     <ClInclude Include="src\Log\Log.hpp" />
     <ClInclude Include="src\util\CLI.hpp" />
     <ClInclude Include="src\util\FileUtil.hpp" />

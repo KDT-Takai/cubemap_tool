@@ -4,7 +4,7 @@
 #include "cubemap/Cubemap.hpp"
 #include "convert/EquirectToCubemap.hpp"
 #include "layout/DiceLayout.hpp"
-#include "Log/Log.hpp"
+#include "Logger/Logger.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -25,21 +25,21 @@ int main(int argc, char* argv[])
         }
     }
 
-    Log::info("Loading input image: " + inputPath);
+    Logger::info("Loading input image: " + inputPath);
     Image src(inputPath);
 
-    Log::info("Converting to cubemap...");
+    Logger::info("Converting to cubemap...");
     Cubemap cube = EquirectToCubemap::convert(src, faceSize);
 
-    Log::info("Generating dice layout...");
+    Logger::info("Generating dice layout...");
     Image dice = DiceLayout::generate(cube);
 
-    Log::info("Saving output: " + outputPath);
+    Logger::info("Saving output: " + outputPath);
     if (!dice.save(outputPath)) {
-        Log::error("Failed to save output image: " + outputPath);
+        Logger::error("Failed to save output image: " + outputPath);
         return 1;
     }
 
-    Log::info("Done!");
+    Logger::info("Done!");
     return 0;
 }

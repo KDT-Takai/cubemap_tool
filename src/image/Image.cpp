@@ -7,7 +7,7 @@
 #include "stb_image_write.h"
 
 #include "Image.hpp"
-#include "Log/Log.hpp"
+#include "Logger/Logger.hpp"
 
 #include <algorithm>
 #include <cmath>

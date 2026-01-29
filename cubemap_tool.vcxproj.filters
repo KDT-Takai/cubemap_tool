@@ -17,6 +17,7 @@
     <ClInclude Include="src\util\FileUtil.hpp" />
     <ClInclude Include="external\stb_image.h" />
     <ClInclude Include="external\stb_image_write.h" />
+    <ClInclude Include="src\Logger\Logger.hpp" />
     <ClInclude Include="src\Log\Log.hpp" />
   </ItemGroup>
   <ItemGroup>
