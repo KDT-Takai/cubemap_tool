@@ -1,9 +1,10 @@
 #pragma once
 #include "image/Image.hpp"
 #include "cubemap/Cubemap.hpp"
+#include "FaceBasis/FaceBasis.hpp"
 
 class EquirectToCubemap {
 public:
-    // Equirect画像を受け取り、指定サイズのCubemapを生成して返す
-    static Cubemap convert(const Image& source, int faceSize);
+    static const FaceBasis* const s_faceBasis;
+    static Cubemap convert(Image source, int faceSize, bool force, bool resize);
 };

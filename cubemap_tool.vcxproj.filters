@@ -6,6 +6,7 @@
     <ClCompile Include="src\cubemap\Cubemap.cpp" />
     <ClCompile Include="src\convert\EquirectToCubemap.cpp" />
     <ClCompile Include="src\layout\DiceLayout.cpp" />
+    <ClCompile Include="src\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\image\Image.hpp" />
@@ -13,12 +14,11 @@
     <ClInclude Include="src\convert\EquirectToCubemap.hpp" />
     <ClInclude Include="src\layout\DiceLayout.hpp" />
     <ClInclude Include="src\util\MathUtil.hpp" />
-    <ClInclude Include="src\util\CLI.hpp" />
-    <ClInclude Include="src\util\FileUtil.hpp" />
     <ClInclude Include="external\stb_image.h" />
     <ClInclude Include="external\stb_image_write.h" />
     <ClInclude Include="src\Logger\Logger.hpp" />
     <ClInclude Include="src\Log\Log.hpp" />
+    <ClInclude Include="src\FaceBasis\FaceBasis.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />

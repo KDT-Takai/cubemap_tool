@@ -15,4 +15,20 @@ namespace MathUtil {
             return { x / len, y / len, z / len };
         }
     };
+
+    inline Vec3 operator+(const Vec3& a, const Vec3& b) {
+        return { a.x + b.x, a.y + b.y, a.z + b.z };
+    }
+
+    inline Vec3 operator-(const Vec3& a, const Vec3& b) {
+        return { a.x - b.x, a.y - b.y, a.z - b.z };
+    }
+
+    inline Vec3 operator*(const Vec3& v, float s) {
+        return { v.x * s, v.y * s, v.z * s };
+    }
+
+    inline Vec3 operator*(float s, const Vec3& v) {
+        return v * s;
+    }
 }

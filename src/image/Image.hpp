@@ -30,4 +30,14 @@ public:
     void setPixel(int x, int y, const Pixel& p);
 
     Pixel getPixel(int x, int y) const;
+
+    Image resized(int newWidth, int newHeight) const;
+
+    void blit(const Image& src, int dstX, int dstY);
+
+    void flipHorizontal();
+    void flipVertical();
+    void rotate90CW();
+    void rotate90CCW();
+    void rotate180();
 };

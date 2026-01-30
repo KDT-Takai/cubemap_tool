@@ -1,35 +1,95 @@
 #include "DiceLayout.hpp"
+#include "Logger/Logger.hpp"
 
-Image DiceLayout::generate(const Cubemap& source) {
-    int fs = source.getFaceSize();
+Image DiceLayout::generate(const Cubemap& cube, DiceLayoutPreset preset)
+{
+    switch (preset) {
+    case DiceLayoutPreset::CrossHorizontal:
+        return generateCrossHorizontal(cube);
 
-    int outW = fs * 3;
-    int outH = fs * 4;
+    case DiceLayoutPreset::CrossVertical:
+        return generateCrossVertical(cube);
 
-    Image canvas(outW, outH);
+    case DiceLayoutPreset::Horizontal:
+        return generateHorizontal(cube);
 
-    auto copyFace = [&](FaceIndex face, int gridX, int gridY) {
-        const Image& srcFace = source.getFace(face);
+    case DiceLayoutPreset::Vertical:
+        return generateVertical(cube);
+    }
+    Logger::error("not found Preset");
+    return generateCrossHorizontal(cube);
+}
 
-        for (int y = 0; y < fs; ++y) {
-            for (int x = 0; x < fs; ++x) {
-                Pixel p = srcFace.getPixel(x, y);
+Image DiceLayout::generateCrossHorizontal(const Cubemap& cube)
+{
+    int s = cube.getFaceSize();
+    Image out(s * 4, s * 3);
 
-                // キャンバス上の書き込み位置
-                int destX = gridX * fs + x;
-                int destY = gridY * fs + y;
+    out.blit(cube.getFace(FaceIndex::PosY), s, 0);
+    out.blit(cube.getFace(FaceIndex::NegX), 0, s);
+    out.blit(cube.getFace(FaceIndex::PosZ), s, s);
+    out.blit(cube.getFace(FaceIndex::PosX), s * 2, s);
+    out.blit(cube.getFace(FaceIndex::NegZ), s * 3, s);
+    out.blit(cube.getFace(FaceIndex::NegY), s, s * 2);
 
-                canvas.setPixel(destX, destY, p);
-            }
-        }
-        };
+    return out;
+}
 
-    copyFace(FaceIndex::PosY, 1, 0); // Top
-    copyFace(FaceIndex::NegX, 0, 1); // Left
-    copyFace(FaceIndex::PosZ, 1, 1); // Front
-    copyFace(FaceIndex::PosX, 2, 1); // Right
-    copyFace(FaceIndex::NegY, 1, 2); // Bottom
-    copyFace(FaceIndex::NegZ, 1, 3); // Back
+Image DiceLayout::generateCrossVertical(const Cubemap& cube)
+{
+    const int s = cube.getFaceSize();
+    Image out(s * 3, s * 4);
 
-    return canvas;
+    out.blit(cube.getFace(FaceIndex::PosY), s, 0);      // 上
+    out.blit(cube.getFace(FaceIndex::PosZ), s, s);      // 中央
+    out.blit(cube.getFace(FaceIndex::PosX), s * 2, s);  // 右
+    out.blit(cube.getFace(FaceIndex::NegX), 0, s);      // 左
+    out.blit(cube.getFace(FaceIndex::NegY), s, s * 2);  // 下
+    out.blit(cube.getFace(FaceIndex::NegZ), s, s * 3);  // 最下段
+
+    return out;
+}
+
+Image DiceLayout::generateHorizontal(const Cubemap& cube)
+{
+    int s = cube.getFaceSize();
+
+    Image out(s * 6, s);
+
+    FaceIndex order[6] = {
+        FaceIndex::PosX,
+        FaceIndex::NegX,
+        FaceIndex::PosY,
+        FaceIndex::NegY,
+        FaceIndex::PosZ,
+        FaceIndex::NegZ
+    };
+
+    for (int i = 0; i < 6; ++i) {
+        out.blit(cube.getFace(order[i]), i * s, 0);
+    }
+
+    return out;
+}
+
+Image DiceLayout::generateVertical(const Cubemap& cube)
+{
+    int s = cube.getFaceSize();
+
+    Image out(s, s * 6);
+
+    FaceIndex order[6] = {
+        FaceIndex::PosX,
+        FaceIndex::NegX,
+        FaceIndex::PosY,
+        FaceIndex::NegY,
+        FaceIndex::PosZ,
+        FaceIndex::NegZ
+    };
+
+    for (int i = 0; i < 6; ++i) {
+        out.blit(cube.getFace(order[i]), 0, i * s);
+    }
+
+    return out;
 }

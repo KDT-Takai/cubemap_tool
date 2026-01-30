@@ -1,9 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
-
-#define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
-
-#define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
 
 #include "Image.hpp"
@@ -30,16 +25,13 @@ bool Image::load(const std::string& filepath)
 {
     int w, h, c;
 
-    unsigned char* img = stbi_load(
-        filepath.c_str(),
-        &w,
-        &h,
-        &c,
-        Channels
-    );
+    unsigned char* img = stbi_load(filepath.c_str(), &w, &h, &c, 4);
 
     if (!img) {
-        Log::error("Failed to load image: " + filepath);
+        Logger::error(
+            std::string("Failed to load image: ") + filepath +
+            " / reason: " + stbi_failure_reason()
+        );
         return false;
     }
 
@@ -50,7 +42,7 @@ bool Image::load(const std::string& filepath)
     std::memcpy(data.data(), img, data.size());
     stbi_image_free(img);
     
-    Log::error("Image loaded successfully: " + filepath);
+    Logger::info("Image loaded successfully: " + filepath);
 
     return true;
 }
@@ -73,37 +65,6 @@ bool Image::save(const std::string& filepath) const
     );
 
     return result != 0;
-}
-
-// ピクセル取得
-Pixel Image::getPixel(int x, int y) const
-{
-    x = std::clamp(x, 0, width - 1);
-    y = std::clamp(y, 0, height - 1);
-
-    int index = (y * width + x) * Channels;
-
-    return Pixel{
-        data[index + 0],
-        data[index + 1],
-        data[index + 2],
-        data[index + 3]
-    };
-}
-
-// ピクセル書き込み
-void Image::setPixel(int x, int y, const Pixel& p)
-{
-    if (x < 0 || x >= width || y < 0 || y >= height) {
-        return;
-    }
-
-    int index = (y * width + x) * Channels;
-
-    data[index + 0] = p.r;
-    data[index + 1] = p.g;
-    data[index + 2] = p.b;
-    data[index + 3] = p.a;
 }
 
 // UVサンプリング
@@ -163,4 +124,132 @@ Pixel Image::sample(float u, float v) const
         );
 
     return result;
+}
+
+// ピクセル書き込み
+void Image::setPixel(int x, int y, const Pixel& p)
+{
+    if (x < 0 || x >= width || y < 0 || y >= height) {
+        return;
+    }
+
+    int index = (y * width + x) * Channels;
+
+    data[index + 0] = p.r;
+    data[index + 1] = p.g;
+    data[index + 2] = p.b;
+    data[index + 3] = p.a;
+}
+
+// ピクセル取得
+Pixel Image::getPixel(int x, int y) const
+{
+    x = std::clamp(x, 0, width - 1);
+    y = std::clamp(y, 0, height - 1);
+
+    int index = (y * width + x) * Channels;
+
+    return Pixel{
+        data[index + 0],
+        data[index + 1],
+        data[index + 2],
+        data[index + 3]
+    };
+}
+
+// 画像リサイズ
+Image Image::resized(int newWidth, int newHeight) const
+{
+    Image out;
+    out.width = newWidth;
+    out.height = newHeight;
+    out.data.resize(newWidth * newHeight * Channels);
+
+    float sx = float(width) / float(newWidth);
+    float sy = float(height) / float(newHeight);
+
+    for (int y = 0; y < newHeight; ++y) {
+        for (int x = 0; x < newWidth; ++x) {
+            float u = float(x) / float(newWidth);
+            float v = float(y) / float(newHeight);
+
+            Pixel p = sample(u, v);
+
+            out.setPixel(x, y, p);
+        }
+    }
+
+    return out;
+}
+
+void Image::blit(const Image& src, int dstX, int dstY)
+{
+    for (int y = 0; y < src.height; ++y) {
+        for (int x = 0; x < src.width; ++x) {
+
+            int tx = dstX + x;
+            int ty = dstY + y;
+
+            if (tx < 0 || ty < 0 || tx >= width || ty >= height)
+                continue;
+
+            setPixel(tx, ty, src.getPixel(x, y));
+        }
+    }
+}
+
+void Image::flipHorizontal()
+{
+    for (int y = 0; y < height; ++y) {
+        for (int x = 0; x < width / 2; ++x) {
+            Pixel a = getPixel(x, y);
+            Pixel b = getPixel(width - 1 - x, y);
+            setPixel(x, y, b);
+            setPixel(width - 1 - x, y, a);
+        }
+    }
+}
+
+void Image::flipVertical()
+{
+    for (int y = 0; y < height / 2; ++y) {
+        for (int x = 0; x < width; ++x) {
+            Pixel a = getPixel(x, y);
+            Pixel b = getPixel(x, height - 1 - y);
+            setPixel(x, y, b);
+            setPixel(x, height - 1 - y, a);
+        }
+    }
+}
+
+void Image::rotate90CW()
+{
+    Image out(height, width);
+
+    for (int y = 0; y < height; ++y) {
+        for (int x = 0; x < width; ++x) {
+            out.setPixel(height - 1 - y, x, getPixel(x, y));
+        }
+    }
+
+    *this = std::move(out);
+}
+
+void Image::rotate90CCW()
+{
+    Image out(height, width);
+
+    for (int y = 0; y < height; ++y) {
+        for (int x = 0; x < width; ++x) {
+            out.setPixel(y, width - 1 - x, getPixel(x, y));
+        }
+    }
+
+    *this = std::move(out);
+}
+
+void Image::rotate180()
+{
+    flipHorizontal();
+    flipVertical();
 }
