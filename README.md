@@ -25,7 +25,7 @@ English:
 
 ```text
 Input image absolute path:
-> C:\Users\com\Desktop\a\test.jpg
+> 
 Face size (default 512):
 > 1024
 
@@ -35,8 +35,8 @@ Choose dice layout:
   [3] Horizontal strip
   [4] Vertical strip
 > 2
-[Info] Loading: C:\Users\com\Desktop\a\test.jpg
-[Info] Image loaded successfully: C:\Users\com\Desktop\a\test.jpg
+[Info] Loading: 
+[Info] Image loaded successfully: 
 
 [FATAL] Input image is not equirectangular.
 
@@ -55,7 +55,7 @@ Choose how to proceed:
 [Info] Cubemap generated
 [Info] Generating dice layout...
 [Info] Dice layout generated
-[Info] Saving: C:\Users\com\Desktop\a\test_dice.png
+[Info] Saving: 
 [Info] Done!
 
 ```
