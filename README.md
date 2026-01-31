@@ -58,6 +58,8 @@ Choose how to proceed:
 [Info] Saving: C:\Users\com\Desktop\a\test_dice.png
 [Info] Done!
 
+```
+
 ## インストール / Installation
 - 日本語：ダウンロードして実行するだけです。  
 - English: Just download and run the executable.
