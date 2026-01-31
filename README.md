@@ -25,7 +25,7 @@ English:
 
 ```text
 Input image absolute path:
-> 
+> C:\Users\com\source\repos\cubemap_tool\assets\beach.png
 Face size (default 512):
 > 1024
 
@@ -34,14 +34,14 @@ Choose dice layout:
   [2] Cross (Vertical)
   [3] Horizontal strip
   [4] Vertical strip
-> 2
-[Info] Loading: 
-[Info] Image loaded successfully: 
+> 1
+[Info] Loading: C:\Users\com\source\repos\cubemap_tool\assets\beach.png
+[Info] Image loaded successfully: C:\Users\com\source\repos\cubemap_tool\assets\beach.png
 
 [FATAL] Input image is not equirectangular.
 
-Image size : 640 x 360
-Aspect     : 1.77778 : 1
+Image size : 1536 x 1024
+Aspect     : 1.5 : 1
 Required   : 2.00 : 1
 
 Choose how to proceed:
@@ -55,7 +55,7 @@ Choose how to proceed:
 [Info] Cubemap generated
 [Info] Generating dice layout...
 [Info] Dice layout generated
-[Info] Saving: 
+[Info] Saving: C:\Users\com\Desktop\a\test_dice.png
 [Info] Done!
 
 ```
@@ -71,4 +71,3 @@ Choose how to proceed:
 ## ライセンス / License
 - 日本語：このプロジェクトはMITライセンスの下でライセンスされています。詳細は[LICENSE](LICENSE)ファイルを参照してください。
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
