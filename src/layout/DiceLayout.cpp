@@ -45,7 +45,11 @@ Image DiceLayout::generateCrossVertical(const Cubemap& cube)
     out.blit(cube.getFace(FaceIndex::PosX), s * 2, s);  // âE
     out.blit(cube.getFace(FaceIndex::NegX), 0, s);      // ç∂
     out.blit(cube.getFace(FaceIndex::NegY), s, s * 2);  // â∫
-    out.blit(cube.getFace(FaceIndex::NegZ), s, s * 3);  // ç≈â∫íi
+    // îΩì]
+    Image negZFace = cube.getFace(FaceIndex::NegZ);
+    negZFace.flipVertical();
+    negZFace.flipHorizontal();
+    out.blit(negZFace, s, s * 3);  // ç≈â∫íi
 
     return out;
 }
