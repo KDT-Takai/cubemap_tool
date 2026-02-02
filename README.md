@@ -1,22 +1,12 @@
 # Cubemap Image Converter
 
-## ŠT—v / Overview
-Unity‚È‚Ç‚Åg—p‚·‚éƒLƒ…[ƒuƒ}ƒbƒv—p‚Ì‰æ‘œ‚ğ¶¬‚·‚éƒc[ƒ‹‚Å‚·B  
-•¡”‚ÌƒŒƒCƒAƒEƒgŒ`®‚É•ÏŠ·‰Â”\‚Å‚·B
+## æ¦‚è¦ / Overview
+Unityãªã©ã§ä½¿ç”¨ã™ã‚‹ã‚­ãƒ¥ãƒ¼ãƒ–ãƒãƒƒãƒ—ç”¨ã®ç”»åƒã‚’ç”Ÿæˆã™ã‚‹ãƒ„ãƒ¼ãƒ«ã§ã™ã€‚  
+è¤‡æ•°ã®ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆå½¢å¼ã«å¤‰æ›å¯èƒ½ã§ã™ã€‚
 
 English:  
 This tool generates images for cubemaps used in Unity and other engines.  
 It supports multiple dice layouts.
-
-## ‚Å‚«‚é‚±‚Æ / Features
-- ‰¡\šiHorizontal Crossj
-![‰¡\šiHorizontal Crossj](assets/beach_CrossHorizontal.png)
-- c\šiVertical Crossj
-![c\šiVertical Crossj](assets/beach_CrossVertical.png)
-- ‰¡ˆê—ñiHorizontal Stripj
-![‰¡ˆê—ñiHorizontal Stripj](assets/beach_Horizontalstrip.png)
-- cˆê—ñiVertical Stripj
-![cˆê—ñiVertical Stripj](assets/beach_Verticalstrip.png)
 
 English:  
 - Converts images to different cubemap layouts:
@@ -25,7 +15,7 @@ English:
   - Horizontal Strip
   - Vertical Strip
 
-## Às—á / Example
+## å®Ÿè¡Œä¾‹ / Example
 
 ```text
 Input image absolute path:
@@ -64,14 +54,24 @@ Choose how to proceed:
 
 ```
 
-## ƒCƒ“ƒXƒg[ƒ‹ / Installation
-- “ú–{ŒêFƒ_ƒEƒ“ƒ[ƒh‚µ‚ÄÀs‚·‚é‚¾‚¯‚Å‚·B  
+## ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ« / Installation
+- æ—¥æœ¬èªï¼šãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ã¦å®Ÿè¡Œã™ã‚‹ã ã‘ã§ã™ã€‚  
 - English: Just download and run the executable.
 
-## g—p•û–@ / Usage
-- “ú–{ŒêFÀsŒãAw¦‚É]‚Á‚Ä“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B
+## ä½¿ç”¨æ–¹æ³• / Usage
+- æ—¥æœ¬èªï¼šå®Ÿè¡Œå¾Œã€æŒ‡ç¤ºã«å¾“ã£ã¦å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚
 - English: After running the program, follow the prompts to input the required information.
 
-## ƒ‰ƒCƒZƒ“ƒX / License
-- “ú–{ŒêF‚±‚ÌƒvƒƒWƒFƒNƒg‚ÍMITƒ‰ƒCƒZƒ“ƒX‚Ì‰º‚Åƒ‰ƒCƒZƒ“ƒX‚³‚ê‚Ä‚¢‚Ü‚·BÚ×‚Í[LICENSE](LICENSE)ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+## ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ / License
+- æ—¥æœ¬èªï¼šã“ã®ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã¯MITãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã®ä¸‹ã§ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã•ã‚Œã¦ã„ã¾ã™ã€‚è©³ç´°ã¯[LICENSE](LICENSE)ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## ã§ãã‚‹ã“ã¨ / Features
+- æ¨ªåå­—ï¼ˆHorizontal Crossï¼‰
+![æ¨ªåå­—ï¼ˆHorizontal Crossï¼‰](assets/beach_CrossHorizontal.png)
+- ç¸¦åå­—ï¼ˆVertical Crossï¼‰
+![ç¸¦åå­—ï¼ˆVertical Crossï¼‰](assets/beach_CrossVertical.png)
+- æ¨ªä¸€åˆ—ï¼ˆHorizontal Stripï¼‰
+![æ¨ªä¸€åˆ—ï¼ˆHorizontal Stripï¼‰](assets/beach_Horizontalstrip.png)
+- ç¸¦ä¸€åˆ—ï¼ˆVertical Stripï¼‰
+![ç¸¦ä¸€åˆ—ï¼ˆVertical Stripï¼‰](assets/beach_Verticalstrip.png)
