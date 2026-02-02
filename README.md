@@ -9,10 +9,14 @@ This tool generates images for cubemaps used in Unity and other engines.
 It supports multiple dice layouts.
 
 ## できること / Features
-- ![横十字（Horizontal Cross）](assets/beach_CrossHorizontal.png)
-- [縦十字（Vertical Cross）](assets/beach_CrossVertical.png)
-- [横一列（Horizontal Strip）](assets/beach_Horizontalstrip.png)
-- [縦一列（Vertical Strip）](assets/beach_Verticalstrip.png)
+- 横十字（Horizontal Cross）
+![横十字（Horizontal Cross）](assets/beach_CrossHorizontal.png)
+- 縦十字（Vertical Cross）
+![縦十字（Vertical Cross）](assets/beach_CrossVertical.png)
+- 横一列（Horizontal Strip）
+![横一列（Horizontal Strip）](assets/beach_Horizontalstrip.png)
+- 縦一列（Vertical Strip）
+![縦一列（Vertical Strip）](assets/beach_Verticalstrip.png)
 
 English:  
 - Converts images to different cubemap layouts:
